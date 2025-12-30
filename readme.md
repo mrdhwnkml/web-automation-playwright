@@ -5,7 +5,6 @@ Automation testing project using **Playwright with JavaScript** for end-to-end (
 ---
 
 ## 🚀 Tech Stack
-
 - **Playwright**
 - **JavaScript (Node.js)**
 - **Playwright Test Runner**
@@ -14,64 +13,59 @@ Automation testing project using **Playwright with JavaScript** for end-to-end (
 ---
 
 ## 📂 Project Structure
-
-├── tests/ # Test cases
-│ ├── login.spec.js
-│ └── example.spec.js
-├── playwright.config.js # Playwright configuration
+```text
+.
+├── tests/                    # Test cases
+│   ├── login.spec.js
+│   └── example.spec.js
+├── playwright.config.js      # Playwright configuration
 ├── package.json
-├── README.md
+└── README.md
+```
 
----
-
-## ⚙️ Prerequisites
+⚙️ Prerequisites
 
 Make sure you have installed:
 
-- **Node.js** v18+
-- **npm** or **yarn**
+ - Node.js v18 or higher
+ - npm or yarn
 
-Check versions:
-
-```bash
+Check installed versions:
+```
 node -v
 npm -v
-
-📦 Installation
-
-Clone repository:
-
-git clone hhttps://github.com/mrdhwnkml/web-automation-playwright
+```
+## 📦 Installation
+1️⃣ Clone Repository
+```
+git clone https://github.com/mrdhwnkml/web-automation-playwright.git
 cd web-automation-playwright
-
-Install dependencies:
-
+```
+2️⃣ Install Dependencies
+```
 npm install
-
-Install Playwright browsers:
-
+```
+3️⃣ Install Playwright Browsers
+```
 npx playwright install
+```
+## ▶️ Run Tests
 
-▶️ Run Tests
-
-Run all tests
-
+1️⃣ Run all tests
+```
 npx playwright test
-
-Run tests with UI mode
-
-Run tests in headed mode
-
+```
+2️⃣ Run tests in headed mode
+```
 npx playwright test --headed
-
-Run specific test file
-
+```
+3️⃣ Run specific test file
+```
 npx playwright test tests/01_addEmployee.spec.js
-
-📊 Test Report
+```
+## 📊 Test Report
 
 Generate and open HTML report:
-
+```
 npx playwright show-report
-
 ```
