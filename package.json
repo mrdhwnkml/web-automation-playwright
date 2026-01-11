@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "report:merge": "mochawesome-merge /app/playwright-report/json/*.json > /app/playwright-report/json/merged.json",
+    "report:generate": "marge /app/playwright-report/json/merged.json -f final-report -o /app/playwright-report/html"
   },
   "repository": {
     "type": "git",
