@@ -1,4 +1,4 @@
-FROM node:18
+FROM mcr.microsoft.com/playwright:focal
 
 # Set working directory
 WORKDIR /app
