@@ -10,11 +10,11 @@ const password = process.env.PASSWORD;
 
 // Membuat fungsi login
 async function login(page) {
-    await page.goto(baseURL);
-    await page.locator('//input[@name="username"]').fill(username);
-    await page.locator('//input[@name="password"]').fill(password);
-    await page.locator('//button[@type="submit"]').click();
-    await expect(page).toHaveURL('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index');
+    await page.goto(baseURL, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+    await page.getByTestId('username-input').fill(username);
+    await page.getByTestId('password-input').fill(password);
+    await page.getByTestId('login-button').click();
+    await expect(page).toHaveURL('https://belajar-bareng.onrender.com/users');
 
 }
 

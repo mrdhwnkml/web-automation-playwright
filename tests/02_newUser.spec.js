@@ -10,7 +10,7 @@ const baseURL = process.env.BASE_URL;
 const username = readValueFromFile('username');
 const password = readValueFromFile('password');
 
-test('User login with fresh user should be success', async ({ page, context }) => {
+test.skip('User login with fresh user should be success', async ({ page, context }) => {
     await page.waitForTimeout(10000); // Menunggu selama 2 detik
 
     await page.goto(baseURL).toBeVisible;

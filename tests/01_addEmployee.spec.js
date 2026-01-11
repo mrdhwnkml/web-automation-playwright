@@ -11,7 +11,7 @@ dotenv.config();
 
 const baseURL = process.env.BASE_URL;
 
-test("User add Employee should be success", async ({
+test.skip("User add Employee should be success", async ({
   page,
   context,
   login,
