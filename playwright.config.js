@@ -9,11 +9,8 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   reporter: [
-    ['list'], // console
-    ['html', {
-      outputFolder: './playwright-report/html',
-      open: 'never'
-    }]
+    ['list'],
+    ['allure-playwright']
   ],
 
   use: {

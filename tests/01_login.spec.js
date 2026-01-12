@@ -21,4 +21,9 @@ test("User should be able to login", async ({
   await page.getByTestId('password-input').fill(password);
   await page.getByTestId('login-button').click();
   await expect(page).toHaveURL('https://belajar-bareng.onrender.com/users');
+
+  await test.info().attach('Screenshot', {
+    body: await page.screenshot(),
+    contentType: 'image/png'
+  });
 });

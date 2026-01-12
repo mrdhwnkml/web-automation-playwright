@@ -35,6 +35,10 @@ test("User not able to add username without fill username field", async ({
   const actualToastText = await page.getByTestId('toast-content').textContent();
   expect(actualToastText).toBe(`Age cannot be negative.`);
 
+  await test.info().attach('Screenshot', {
+    body: await page.screenshot(),
+    contentType: 'image/png'
+  });
 
 });
 
@@ -54,6 +58,9 @@ test("User not able to add username with existing user", async ({
   //Assertion
   const actualToastText = await page.getByTestId('toast-content').textContent();
   expect(actualToastText).toBe(`Username "Ridhwan" already exists!`);
-
+  await test.info().attach('Screenshot', {
+    body: await page.screenshot(),
+    contentType: 'image/png'
+  });
 
 });
