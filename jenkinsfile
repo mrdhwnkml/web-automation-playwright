@@ -23,13 +23,13 @@ pipeline {
             }
         }
 
-        stage('Run Playwright Test') {
+        stage('Run Playwright Test!') {
             steps {
                 script {
                     sh """
                     docker run --rm \
                         -v \$WORKSPACE/${REPORT_DIR}:/app/${REPORT_DIR} \
-                        ${DOCKER_IMAGE}
+                        ${DOCKER_IMAGE }
                     """
                 }
             }
