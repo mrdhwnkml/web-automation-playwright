@@ -9,11 +9,10 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   reporter: [
-    ['list'], // console output
-    ['mochawesome', {
-      reportDir: './playwright-report',
-      reportFilename: 'results',
-      quiet: true
+    ['list'], // console
+    ['html', {
+      outputFolder: './playwright-report/html',
+      open: 'never'
     }]
   ],
 
