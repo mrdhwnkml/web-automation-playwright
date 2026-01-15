@@ -1,5 +1,18 @@
+# Jangan include folder dependencies lokal
 node_modules
+
+# File Git / metadata
 .git
 .gitignore
+
+# Dockerfile sendiri tidak perlu ikut copy
 Dockerfile
+
+# File log
 *.log
+
+# Laporan / test hasil build sebelumnya
+playwright-report
+test-results
+allure-report
+allure-results
