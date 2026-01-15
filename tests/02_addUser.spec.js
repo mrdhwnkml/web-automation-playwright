@@ -14,7 +14,7 @@ const username = faker.string.alpha({
 const age = faker.number.int({ min: 1, max: 99 });
 const baseURL = process.env.BASE_URL;
 
-test("User not able to add username without fill username field", async ({
+test("User not able to add username with fill age with 0", async ({
   page,
   context,
   login,
