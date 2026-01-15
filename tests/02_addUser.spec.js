@@ -3,64 +3,76 @@ import { test } from "../utils/fixtures";
 import * as dotenv from "dotenv";
 import { saveToLocalStorageAndFile } from "../utils/helper";
 import { generateUserData, generatePassword } from "../utils/dataGenerator";
-import { faker } from '@faker-js/faker';
-
+import { faker } from "@faker-js/faker";
 
 dotenv.config();
 
 const username = faker.string.alpha({
   length: { min: 1, max: 10 },
-
 });
 
 const age = faker.number.int({ min: 0, max: 99 });
 const baseURL = process.env.BASE_URL;
 
-
-
 test("User not able to add username without fill username field", async ({
   page,
   context,
   login,
-
 }) => {
-
   // Add
-  await page.getByRole('button', { name: 'Add ➕' }).click();
-  await page.getByTestId('username-input').fill(username);
-  await page.getByTestId('age-input').fill("0");
-  await page.getByTestId('submit-button').click();
+  await page.getByRole("button", { name: "Add ➕" }).click();
+  await page.getByTestId("username-input").fill(username);
+  await page.getByTestId("age-input").fill("0");
+  await page.getByTestId("submit-button").click();
 
   // Assertion
-  const actualToastText = await page.getByTestId('toast-content').textContent();
+  const actualToastText = await page.getByTestId("toast-content").textContent();
   expect(actualToastText).toBe(`Age cannot be negative.`);
 
-  await test.info().attach('Screenshot', {
+  await test.info().attach("Screenshot", {
     body: await page.screenshot(),
-    contentType: 'image/png'
+    contentType: "image/png",
   });
-
 });
 
 test("User not able to add username with existing user", async ({
   page,
   context,
   login,
-
 }) => {
-
   // Add
-  await page.getByRole('button', { name: 'Add ➕' }).click();
-  await page.getByTestId('username-input').fill("Ridhwan");
-  await page.getByTestId('age-input').fill(age.toString());
-  await page.getByTestId('submit-button').click();
+  await page.getByRole("button", { name: "Add ➕" }).click();
+  await page.getByTestId("username-input").fill("Ridhwan");
+  await page.getByTestId("age-input").fill(age.toString());
+  await page.getByTestId("submit-button").click();
 
   //Assertion
-  const actualToastText = await page.getByTestId('toast-content').textContent();
+  const actualToastText = await page.getByTestId("toast-content").textContent();
   expect(actualToastText).toBe(`Username "Ridhwan" already exists!`);
-  await test.info().attach('Screenshot', {
+  await test.info().attach("Screenshot", {
     body: await page.screenshot(),
-    contentType: 'image/png'
+    contentType: "image/png",
   });
+});
 
+test("User should be see confetti if input correct username", async ({
+  page,
+  context,
+  login,
+}) => {
+  // Add
+  await page.getByRole("button", { name: "Add ➕" }).click();
+  await page.getByTestId("username-input").fill("mrdhwnkml");
+  await page.getByTestId("age-input").fill(age.toString());
+  await page.getByTestId("submit-button").click();
+
+  //Assertion
+  const actualToastText = await page.getByTestId("toast-content").textContent();
+  expect(actualToastText).toBe(
+    `Congratulations, you have unlocked the Hidden Secret! 🎉🎊🍾`
+  );
+  await test.info().attach("Screenshot", {
+    body: await page.screenshot(),
+    contentType: "image/png",
+  });
 });
