@@ -33,12 +33,14 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
 
-      - name: Install Allure CLI (official)
-        run: |
-          ALLURE_VERSION=2.27.0
-          wget https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.zip
-          unzip -o allure-${ALLURE_VERSION}.zip -d $HOME/.allure
-          echo "$HOME/.allure/allure-${ALLURE_VERSION}/bin" >> $GITHUB_PATH
+      - name: Install Allure CLI
+      run: |
+            ALLURE_VERSION=2.27.0
+            wget -q https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.zip
+            unzip -q -o allure-${ALLURE_VERSION}.zip -d $HOME/.allure
+            chmod +x $HOME/.allure/allure-${ALLURE_VERSION}/bin/allure
+            echo "$HOME/.allure/allure-${ALLURE_VERSION}/bin" >> $GITHUB_PATH
+
 
       - name: Generate Allure Report
         if: always()
