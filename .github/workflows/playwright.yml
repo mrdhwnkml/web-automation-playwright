@@ -55,6 +55,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
           force_orphan: true
+          allow_empty_commit: true
           commit_message: "Update Allure report $(date +'%Y-%m-%d %H:%M:%S')"
 
       - name: Upload Playwright artifact
