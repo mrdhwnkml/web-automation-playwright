@@ -33,6 +33,10 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         
+      - name: Clean old Allure report
+        if: always()
+        run: rm -rf allure-report
+        
       - name: Install Allure CLI & Generate Report
         if: always()
         run: |
