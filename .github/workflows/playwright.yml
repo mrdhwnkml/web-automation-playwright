@@ -5,12 +5,10 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
-  schedule:
-    - cron: '30 16 * * *'  # setiap hari jam 23:30 WIB
   workflow_dispatch:
 
 permissions:
-  contents: write   # wajib untuk push ke gh-pages
+  contents: write
 
 jobs:
   test:
@@ -18,40 +16,34 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      # 1️⃣ Checkout repo
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
 
-      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # 4️⃣ Install Playwright browsers
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      # 5️⃣ Run Playwright tests
       - name: Run Playwright tests
         run: npx playwright test
 
-      # 6️⃣ Setup Allure CLI resmi
-      - name: Setup Allure CLI
-        uses: devops-infra/action-allure@v2
-        with:
-          allure_version: '2.27.0'
+      - name: Install Allure CLI (official)
+        run: |
+          ALLURE_VERSION=2.27.0
+          wget https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.zip
+          unzip -o allure-${ALLURE_VERSION}.zip -d $HOME/.allure
+          echo "$HOME/.allure/allure-${ALLURE_VERSION}/bin" >> $GITHUB_PATH
 
-      # 7️⃣ Generate Allure Report (walau test fail)
       - name: Generate Allure Report
         if: always()
         run: allure generate allure-results --clean -o allure-report
 
-      # 8️⃣ Deploy Allure Report ke GH Pages (root)
       - name: Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
@@ -60,8 +52,7 @@ jobs:
           publish_dir: ./allure-report
           force_orphan: true
 
-      # 9️⃣ Upload Playwright artifact (optional)
-      - name: Upload Playwright report artifact
+      - name: Upload Playwright artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
