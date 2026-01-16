@@ -69,7 +69,7 @@ test("User should be see confetti if input correct username", async ({
   //Assertion
   const actualToastText = await page.getByTestId("toast-content").textContent();
   expect(actualToastText).toBe(
-    `Congratulations, you have unlocked the Hidden Secret!a 🎉🎊🍾`
+    `Congratulations, you have unlocked the Hidden Secret! 🎉🎊🍾`
   );
   await test.info().attach("Screenshot", {
     body: await page.screenshot(),
