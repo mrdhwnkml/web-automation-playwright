@@ -5,7 +5,7 @@ Automation testing project using **Playwright with JavaScript** for end-to-end (
 ---
 #### Report Running Test!
 
-[![Cypress Report](https://img.shields.io/badge/Cypress-Report-blue)](https://mrdhwnkml.github.io/web-automation-playwright/)
+[![Playwright Report](https://img.shields.io/badge/Cypress-Report-blue)](https://mrdhwnkml.github.io/web-automation-playwright/)
 
 ## 🚀 Tech Stack
 - **Playwright**
