@@ -49,14 +49,6 @@ jobs:
         run: |
           npx playwright install chromium
          
-
-      - name: Verify Browser Install
-        if: always()
-        run: |
-          echo "=== PLAYWRIGHT CACHE ==="
-          ls -lah ~/.cache/ms-playwright || true
-          du -sh ~/.cache/ms-playwright || true
-
       - name: Run Playwright Tests
         run: npm run tests | tee test-log.txt
 
@@ -68,11 +60,10 @@ jobs:
           path: test-log.txt
 
       - name: Run AI Test Analyzer
-        if: always()
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: node ai-analyzer.js
-
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          run: node ai-analyzer.j
+     
       - name: Generate Allure Report
         if: always()
         run: |

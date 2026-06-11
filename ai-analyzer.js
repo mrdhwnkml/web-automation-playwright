@@ -1,11 +1,11 @@
 import fs from "fs";
-import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
 });
 
-const log = fs.readFileSync("test-log.txt", "utf-8");
+const log = fs.readFileSync("test-log.txt", "utf-8").slice(-20000);
 
 const prompt = `
 You are a senior QA automation engineer.
@@ -21,10 +21,10 @@ Please provide:
 4. Stability recommendation (how to make it less flaky)
 `;
 
-const response = await openai.chat.completions.create({
-  model: "gpt-4o-mini",
-  messages: [{ role: "user", content: prompt }],
+const response = await ai.models.generateContent({
+  model: "gemini-2.5-flash",
+  contents: prompt,
 });
 
 console.log("\n===== AI TEST ANALYSIS =====\n");
-console.log(response.choices[0].message.content);
+console.log(response.text);
