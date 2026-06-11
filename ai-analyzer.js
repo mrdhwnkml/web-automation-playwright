@@ -1,13 +1,14 @@
 const fs = require("fs");
 const { GoogleGenAI } = require("@google/genai");
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
+async function main() {
+  const ai = new GoogleGenAI({
+    apiKey: process.env.GEMINI_API_KEY,
+  });
 
-const log = fs.readFileSync("test-log.txt", "utf-8").slice(-20000);
+  const log = fs.readFileSync("test-log.txt", "utf-8");
 
-const prompt = `
+  const prompt = `
 You are a senior QA automation engineer.
 
 Analyze this test execution log:
@@ -21,10 +22,13 @@ Please provide:
 4. Stability recommendation (how to make it less flaky)
 `;
 
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-flash",
-  contents: prompt,
-});
+  const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: prompt,
+  });
 
-console.log("\n===== AI TEST ANALYSIS =====\n");
-console.log(response.text);
+  console.log("\n===== AI TEST ANALYSIS =====\n");
+  console.log(response.text);
+}
+
+main().catch(console.error);
