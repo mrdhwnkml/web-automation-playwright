@@ -23,14 +23,13 @@
   "devDependencies": {
     "@eslint/js": "^9.16.0",
     "@faker-js/faker": "^9.3.0",
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.60.0",
     "@types/node": "^22.10.1",
     "allure-playwright": "^3.4.4",
     "eslint": "^9.16.0",
     "globals": "^15.13.0"
   },
   "dependencies": {
-    "@playwright/test": "^1.40.0",
     "dotenv": "^16.4.7",
     "openai": "^6.42.0"
   }
