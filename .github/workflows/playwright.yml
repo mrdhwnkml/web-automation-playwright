@@ -51,7 +51,16 @@ jobs:
         run: |
           npm list @playwright/test
           npx playwright --version
+
+      - name: Check disk
+        run: |
+          df -h
+          free -h
           
+      - name: Check unzip
+        run: |
+          unzip -v  
+
       - name: Check Playwright version
         run: |
           npm list @playwright/test
