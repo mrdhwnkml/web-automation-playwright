@@ -50,7 +50,7 @@ jobs:
           npx playwright install chromium
          
       - name: Run Playwright Tests
-        run: npm run tests | tee test-log.txt
+        run: npm run test | tee test-log.txt
 
       - name: Upload Test Log
         if: always()

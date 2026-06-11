@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-    "tests": "npx playwright test tests/01_login.spec.js",
     "report:merge": "mochawesome-merge /app/playwright-report/json/*.json > /app/playwright-report/json/merged.json",
     "report:generate": "marge /app/playwright-report/json/merged.json -f final-report -o /app/playwright-report/html"
   },
