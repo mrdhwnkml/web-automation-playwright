@@ -1,0 +1,30 @@
+import fs from "fs";
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const log = fs.readFileSync("test-log.txt", "utf-8");
+
+const prompt = `
+You are a senior QA automation engineer.
+
+Analyze this test execution log:
+
+${log}
+
+Please provide:
+1. Root cause of failure (if any)
+2. Category (UI issue / locator issue / timing issue / app crash / environment issue)
+3. Suggested fix
+4. Stability recommendation (how to make it less flaky)
+`;
+
+const response = await openai.chat.completions.create({
+  model: "gpt-4o-mini",
+  messages: [{ role: "user", content: prompt }],
+});
+
+console.log("\n===== AI TEST ANALYSIS =====\n");
+console.log(response.choices[0].message.content);

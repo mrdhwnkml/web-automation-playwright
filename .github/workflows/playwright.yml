@@ -34,7 +34,18 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npm run tests | tee test-log.txt
+      
+      - name: Upload log
+        uses: actions/upload-artifact@v4
+        with:
+            name: test-log
+            path: test-log.txt
+      
+       - name: Run AI Test Analyzer
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node ai-analyzer.js
         
       - name: Clean old Allure report
         if: always()
