@@ -65,7 +65,10 @@ jobs:
           npm list @playwright/test
 
       - name: Install Playwright browsers
-        run: npx playwright install chromium --force
+        run: |
+          npx playwright install chromium
+          echo "==== CHECK ===="
+          npx playwright install --dry-run
 
       - name: Run Playwright tests
         run: npm run tests | tee test-log.txt
