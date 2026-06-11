@@ -1,4 +1,6 @@
 name: Playwright Tests + Allure Report
+run: |
+  echo "WORKFLOW VERSION 2026-06-11-A"
 
 on:
   push:
@@ -67,7 +69,7 @@ jobs:
       - name: Install Playwright browsers
         run: |
           echo "START $(date)"
-          time npx playwright install chromium --verbose
+          DEBUG=pw:install npx playwright install chromium
           echo "END $(date)"
 
       - name: Run Playwright tests
