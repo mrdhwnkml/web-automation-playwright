@@ -66,9 +66,9 @@ jobs:
 
       - name: Install Playwright browsers
         run: |
-          npx playwright install chromium
-          echo "==== CHECK ===="
-          npx playwright install --dry-run
+          echo "START $(date)"
+          time npx playwright install chromium --verbose
+          echo "END $(date)"
 
       - name: Run Playwright tests
         run: npm run tests | tee test-log.txt
