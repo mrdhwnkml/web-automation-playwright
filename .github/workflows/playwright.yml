@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     timeout-minutes: 60
 
     steps:
@@ -29,6 +29,11 @@ jobs:
           key: node-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             node-${{ runner.os }}-
+
+      - name: Check Playwright package 
+        run: |
+          npm list @playwright/test
+          npx playwright --version
 
       # ⚡ CACHE PLAYWRIGHT BROWSERS (INI YANG PALING PENTING)
       - name: Cache Playwright browsers
