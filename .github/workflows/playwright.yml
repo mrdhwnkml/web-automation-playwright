@@ -60,6 +60,7 @@ jobs:
           path: test-log.txt
 
       - name: Run AI Test Analyzer
+        continue-on-error: true
         if: always()
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
