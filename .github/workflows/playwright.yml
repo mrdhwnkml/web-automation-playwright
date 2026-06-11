@@ -42,11 +42,11 @@ jobs:
             name: test-log
             path: test-log.txt
       
-       - name: Run AI Test Analyzer
+      - name: Run AI Test Analyzer
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node ai-analyzer.js
-        
+
       - name: Clean old Allure report
         if: always()
         run: rm -rf allure-report
