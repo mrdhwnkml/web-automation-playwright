@@ -64,8 +64,10 @@ jobs:
           DEBUG: pw:install,pw:browser*
         run: |
           echo "START $(date)"
-          npx playwright install chromium
-          echo "INSTALL DONE $(date)"
+          timeout 300 npx playwright install chromium
+          EXIT_CODE=$?
+          echo "EXIT_CODE=$EXIT_CODE"
+          echo "END $(date)"
 
       - name: Verify Browser Install
         if: always()
