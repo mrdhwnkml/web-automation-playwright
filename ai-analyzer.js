@@ -1,5 +1,5 @@
-import fs from "fs";
-import { GoogleGenAI } from "@google/genai";
+const fs = require("fs");
+const { GoogleGenAI } = require("@google/genai");
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
