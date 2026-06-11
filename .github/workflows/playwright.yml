@@ -58,6 +58,12 @@ jobs:
           echo "=== BROWSER SIZE ==="
           du -sh ~/.cache/ms-playwright || true
 
+      - name: Debug npm
+        run: |
+         pwd
+         ls -la
+        npm list @playwright/test
+
       - name: Install Playwright browsers
         run: npx playwright install chromium --force
 
