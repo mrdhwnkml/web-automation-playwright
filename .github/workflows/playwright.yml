@@ -60,9 +60,10 @@ jobs:
           path: test-log.txt
 
       - name: Run AI Test Analyzer
+        if: always()
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node ai-analyzer.j
+        run: node ai-analyzer.js
      
       - name: Generate Allure Report
         if: always()
