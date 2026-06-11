@@ -44,30 +44,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Environment Debug
-        run: |
-          echo "=== PLAYWRIGHT VERSION ==="
-          npm list @playwright/test
-          npx playwright --version
-
-          echo "=== CACHE STATUS ==="
-          echo "Cache Hit: ${{ steps.playwright-cache.outputs.cache-hit }}"
-
-          echo "=== DISK ==="
-          df -h
-
-          echo "=== MEMORY ==="
-          free -h
 
       - name: Install Playwright Browsers
-        env:
-          DEBUG: pw:install,pw:browser*
         run: |
-          echo "START $(date)"
-          npx playwright install firefox
-          EXIT_CODE=$?
-          echo "EXIT_CODE=$EXIT_CODE"
-          echo "END $(date)"
+          npx playwright install chromium
+         
 
       - name: Verify Browser Install
         if: always()
