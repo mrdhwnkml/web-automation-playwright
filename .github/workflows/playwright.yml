@@ -1,6 +1,4 @@
 name: Playwright Tests + Allure Report
-run: |
-  echo "WORKFLOW VERSION 2026-06-11-A"
 
 on:
   push:
@@ -21,6 +19,10 @@ jobs:
     timeout-minutes: 60
 
     steps:
+      - name: Workflow Version
+        run: |
+          echo "WORKFLOW VERSION 2026-06-11-A"
+
       - name: Checkout repo
         uses: actions/checkout@v4
 
