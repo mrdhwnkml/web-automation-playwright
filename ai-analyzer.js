@@ -4,9 +4,8 @@ async function main() {
   const log = fs.readFileSync("test-log.txt", "utf-8");
 
   const isPassed =
-    log.includes(" passed") &&
-    !log.includes(" failed") &&
-    !log.includes(" error");
+  /\b\d+\s+passed\b/i.test(log) &&
+  !/\b\d+\s+failed\b/i.test(log);
 
   if (isPassed) {
     console.log("\n===== AI TEST ANALYSIS =====");
@@ -22,17 +21,28 @@ async function main() {
   });
 
   const prompt = `
-You are a senior QA automation engineer.
+You are a QA Automation Engineer.
 
-Analyze this failed Playwright test log:
+Analyze this FAILED Playwright test log.
 
 ${log}
 
-Please provide:
-1. Root cause of failure
-2. Category (UI issue / locator issue / timing issue / app crash / environment issue)
-3. Suggested fix
-4. Stability recommendation
+Rules:
+- Use only evidence from the log.
+- Do not speculate.
+- Prioritize automation issues before application issues.
+- Locator not found = Locator Issue.
+- Timeout while waiting for locator = Locator Issue.
+- Timeout during navigation/API request = Environment Issue unless log shows application error.
+- Application error must be supported by evidence in the log.
+- Keep answer under 8 lines.
+
+Return format:
+
+Root Cause:
+Category:
+Suggested Fix:
+Stability Recommendation:
 `;
 
   const response = await ai.models.generateContent({
