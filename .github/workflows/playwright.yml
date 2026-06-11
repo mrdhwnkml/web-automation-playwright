@@ -64,7 +64,7 @@ jobs:
           DEBUG: pw:install,pw:browser*
         run: |
           echo "START $(date)"
-          timeout 300 npx playwright install chromium
+          npx playwright install firefox
           EXIT_CODE=$?
           echo "EXIT_CODE=$EXIT_CODE"
           echo "END $(date)"
