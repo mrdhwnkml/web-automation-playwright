@@ -15,14 +15,10 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 60
 
     steps:
-      - name: Workflow Version
-        run: |
-          echo "WORKFLOW VERSION 2026-06-11-A"
-
       - name: Checkout repo
         uses: actions/checkout@v4
 
@@ -69,10 +65,17 @@ jobs:
           npm list @playwright/test
 
       - name: Install Playwright browsers
+        env:
+          DEBUG: pw:install
         run: |
           echo "START $(date)"
-          DEBUG=pw:install npx playwright install chromium
-          echo "END $(date)"
+          npx playwright install chromium
+          echo "INSTALL DONE $(date)"
+
+      - name: Check Browser Folder
+        run: |
+          echo "HOME=$HOME"
+          find ~/.cache -maxdepth 3 -type d | sort | head -100
 
       - name: Run Playwright tests
         run: npm run tests | tee test-log.txt
