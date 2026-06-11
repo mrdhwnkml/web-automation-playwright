@@ -64,6 +64,13 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node ai-analyzer.js
+
+      - name: Upload AI Analysis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-analysis
+          path: ai-analysis.txt
      
       - name: Generate Allure Report
         if: always()

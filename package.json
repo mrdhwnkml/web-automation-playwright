@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "npx playwright test",
     "tests": "npx playwright test tests/01_login.spec.js",
